@@ -16,7 +16,6 @@ from botocore.exceptions import NoCredentialsError, PartialCredentialsError
 # Initialize a session using AWS credentials (Make sure credentials have admin permissions)
 def create_member_account(member_email,client,accout_name):
     try:
-        # Create a client for AWS Organizations
 
         # Create a new account in the organization
         response = client.create_account(
@@ -132,13 +131,14 @@ def remove_account_from_organization(org_client,account_id):
     except ClientError as e:
         print(f"Error removing account {account_id} from the organization: {e}")
 
-# Only attempt removal if the account ID was found
+
 
 
 def main():
     # Example usage
     member_email = "yd2284@nyu.edu"
     account_name ="yufeng_testing"
+    # Create a client for AWS Organizations
     client = boto3.client('organizations')
 
 
@@ -147,6 +147,7 @@ def main():
 
     client = boto3.client('organizations')
     email = 'yd2284@nyu.edu'  # Replace with the actual email
+    # Only attempt removal if the account ID was found
     account_id = get_account_id_by_email(client,email)
     if account_id:
         remove_account_from_organization(client,account_id)
