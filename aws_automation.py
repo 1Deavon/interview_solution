@@ -63,7 +63,7 @@ def automate_updating_payment():
     time.sleep(10)
     driver.find_element(By.ID, "root_account_signin").click()
     time.sleep(10)
-    driver.find_element(By.ID, "resolving_input").send_keys("yd2284@nyu.edu")
+    driver.find_element(By.ID, "resolving_input").send_keys("email")
     time.sleep(10)
     driver.find_element(By.ID, "next_button").click()
     # If a security check pops up, prompt the user to complete it manually.
@@ -72,7 +72,7 @@ def automate_updating_payment():
     # Continue the script after manual completion
     print("Security check completed. Continuing with the automation...")
     time.sleep(10)
-    driver.find_element(By.ID, "password").send_keys("Dyf@0928")
+    driver.find_element(By.ID, "password").send_keys("password")
     time.sleep(10)
     driver.find_element(By.ID, "signin_button").click()
     time.sleep(20)
@@ -136,7 +136,7 @@ def remove_account_from_organization(org_client,account_id):
 
 def main():
     # Example usage
-    member_email = "yd2284@nyu.edu"
+    member_email = "example@email.com"
     account_name ="yufeng_testing"
     # Create a client for AWS Organizations
     client = boto3.client('organizations')
@@ -146,7 +146,7 @@ def main():
     automate_updating_payment()
 
     client = boto3.client('organizations')
-    email = 'yd2284@nyu.edu'  # Replace with the actual email
+    email = 'example@email.com'  # Replace with the actual email
     # Only attempt removal if the account ID was found
     account_id = get_account_id_by_email(client,email)
     if account_id:
